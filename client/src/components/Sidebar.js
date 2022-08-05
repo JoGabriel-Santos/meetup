@@ -4,7 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard/src'
 import { SocketContext } from '../context/Context'
 
 function Sidebar ({ children }) {
-    const { callAccepted, callEnded, user, guest, setGuest, callGuest, leaveCall } = useContext(SocketContext)
+    const { callAccepted, callEnded, user, callGuest, leaveCall } = useContext(SocketContext)
 
     const [idToCall, setIdToCall] = useState('')
 
@@ -50,6 +50,7 @@ function Sidebar ({ children }) {
                     </div>
                 </div>
             </form>
+
             {children}
         </div>
     )

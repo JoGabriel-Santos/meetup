@@ -3,6 +3,7 @@ import React from 'react'
 import Player from './components/Player'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import Notifications from './components/Notifications'
 
 function App () {
     return (
@@ -10,7 +11,7 @@ function App () {
             <Navbar/>
             <Player/>
             <Sidebar>
-
+                <Notifications/>
             </Sidebar>
 
         </section>

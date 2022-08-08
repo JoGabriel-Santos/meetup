@@ -10,15 +10,15 @@ function Sidebar ({ children }) {
 
     return (
         <div className={'sidebar'}>
-            <form className={'container-fluid d-flex flex-row w-50'}>
+            <form className={'container-fluid d-flex flex-row w-50'} autoComplete={'off'} noValidate>
                 <div className={'align-items-center d-flex flex-column justify-content-start shadow w-100'}>
-                    <div className={'align-items-center flex-column flex-lg-row mt-3 submit'}>
+                    <div className={'align-items-center flex-column flex-lg-row mt-3'}>
 
-                        <div className={'align-items-center d-flex justify-content-center rounded pb'} typeof={'button'}>
+                        <div className={'align-items-center d-flex justify-content-center rounded pb'}>
                             <i className={'uil uil-copy fs-4 pr'}></i>
 
                             <CopyToClipboard text={user}>
-                                <button className={'m-0'} id={'btn-submit'} type={'submit'}>Copy your ID</button>
+                                <button className={'m-0'} type={'button'}>Copy your ID</button>
                             </CopyToClipboard>
                         </div>
                     </div>
@@ -27,7 +27,7 @@ function Sidebar ({ children }) {
                 <div className={'align-items-center d-flex flex-column justify-content-start shadow w-100'}>
                     <div className={'align-items-center flex-column flex-lg-row mt-3 submit'}>
 
-                        <div className={'align-items-center d-flex justify-content-center rounded pb'} typeof={'button'}>
+                        <div className={'align-items-center d-flex justify-content-center rounded pb'}>
                             <i className={'uil uil-outgoing-call fs-4 pr'}></i>
 
                             <input className={'border-0 bg-gray form-control input'} value={idToCall}
@@ -37,12 +37,12 @@ function Sidebar ({ children }) {
                             />
 
                             {callAccepted && !callEnded ? (
-                                <button className={'m-0'} id={'btn-submit'} type={'submit'} onClick={leaveCall}>
+                                <button className={'m-0'} type={'button'} onClick={leaveCall}>
                                     Hang up
                                 </button>
 
                             ) : (
-                                <button className={'m-0'} id={'btn-submit'} type={'submit'} onClick={() => callGuest(idToCall)}>
+                                <button className={'m-0'} type={'button'} onClick={() => callGuest(idToCall)}>
                                     Call
                                 </button>
                             )}

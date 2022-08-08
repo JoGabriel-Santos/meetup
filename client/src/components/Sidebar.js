@@ -10,43 +10,36 @@ function Sidebar ({ children }) {
 
     return (
         <div className={'sidebar'}>
-            <form className={'container-fluid d-flex flex-row w-50'} autoComplete={'off'} noValidate>
-                <div className={'align-items-center d-flex flex-column justify-content-start shadow w-100'}>
-                    <div className={'align-items-center flex-column flex-lg-row mt-3'}>
+            <form className={'container-fluid d-flex w-50'} autoComplete={'off'} noValidate>
+                <div className={'align-items-center border d-flex justify-content-around p-3 shadow sidebar-card w-100'}>
 
-                        <div className={'align-items-center d-flex justify-content-center rounded pb'}>
-                            <i className={'uil uil-copy fs-4 pr'}></i>
+                    <div className={'align-items-center d-flex justify-content-center rounded sidebar-items'}>
+                        <i className={'uil uil-copy fs-4 pr'}></i>
 
-                            <CopyToClipboard text={user}>
-                                <button className={'m-0'} type={'button'}>Copy your ID</button>
-                            </CopyToClipboard>
-                        </div>
+                        <CopyToClipboard text={user}>
+                            <button className={'m-0'} type={'button'}>Copy your ID</button>
+                        </CopyToClipboard>
                     </div>
-                </div>
 
-                <div className={'align-items-center d-flex flex-column justify-content-start shadow w-100'}>
-                    <div className={'align-items-center flex-column flex-lg-row mt-3 submit'}>
+                    <div className={'align-items-center border d-flex justify-content-center rounded pl-10'}>
+                        <i className={'uil uil-qrcode-scan fs-4 pr'}></i>
 
-                        <div className={'align-items-center d-flex justify-content-center rounded pb'}>
-                            <i className={'uil uil-outgoing-call fs-4 pr'}></i>
+                        <input className={'border-0 bg-gray form-control input'} value={idToCall}
+                               onChange={(event) => setIdToCall(event.target.value)}
+                               placeholder={'ID to call'}
+                               type="text"
+                        />
 
-                            <input className={'border-0 bg-gray form-control input'} value={idToCall}
-                                   onChange={(event) => setIdToCall(event.target.value)}
-                                   placeholder={'ID to call'}
-                                   type="text"
-                            />
+                        {callAccepted && !callEnded ? (
+                            <button className={'m-0'} type={'button'} onClick={leaveCall}>
+                                Hang up
+                            </button>
 
-                            {callAccepted && !callEnded ? (
-                                <button className={'m-0'} type={'button'} onClick={leaveCall}>
-                                    Hang up
-                                </button>
-
-                            ) : (
-                                <button className={'m-0'} type={'button'} onClick={() => callGuest(idToCall)}>
-                                    Call
-                                </button>
-                            )}
-                        </div>
+                        ) : (
+                            <button className={'align-items-center border call-btn d-flex sidebar-items'} type={'button'} onClick={() => callGuest(idToCall)}>
+                                <i className={'uil uil-outgoing-call fs-4 pr'}></i>Call
+                            </button>
+                        )}
                     </div>
                 </div>
             </form>

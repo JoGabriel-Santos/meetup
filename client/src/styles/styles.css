@@ -45,6 +45,20 @@ button {
     color: blue;
 }
 
+.card {
+    border: none;
+}
+
+.call-btn {
+    padding: 0;
+    margin-left: 20px;
+    transition: all 0.5s;
+}
+
+.call-btn:hover {
+    background-color: greenyellow;
+}
+
 .fs-0 {
     font-size: 4rem;
 }
@@ -59,7 +73,7 @@ button {
 
 .form {
     margin-top: 100px;
-    max-width: 28rem;
+    max-width: 30rem;
     width: 100%;
 }
 
@@ -67,6 +81,10 @@ button {
     object-fit: cover;
     height: 38px;
     width: 38px;
+}
+
+.info {
+    padding-bottom: 8px;
 }
 
 .margin-0 {
@@ -92,4 +110,41 @@ button {
 
 .pr {
     padding-right: 8px;
+}
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.sidebar {
+    margin-top: 20px;
+}
+
+.sidebar-items {
+    cursor: pointer;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 990px) {
+    .card {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .card {
+        flex-direction: row;
+    }
+}
+
+@media only screen and (max-width: 1210px) {
+    .sidebar-card {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 1212px) {
+    .sidebar-card {
+        flex-direction: row;
+    }
 }

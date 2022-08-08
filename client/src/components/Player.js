@@ -6,14 +6,14 @@ function Player () {
     const { callAccepted, callEnded, call, stream, user, userVideo, guestVideo } = useContext(SocketContext)
 
     return (
-        <div className={'align-items-center d-flex flex-row justify-content-around w-100'}>
+        <div className={'align-items-center d-flex card justify-content-around w-100'}>
 
             {stream && (
                 <div className={'bg-white border form rounded shadow'}>
 
-                    <video ref={userVideo} autoPlay muted playsInline></video>
+                    <video className={'w-100'} ref={userVideo} autoPlay muted playsInline></video>
 
-                    <div className={'align-items-center d-flex justify-content-start'}>
+                    <div className={'align-items-center d-flex info justify-content-start'}>
                         <div className={'user-image'}>
                             <img className={'image-logo me-2 rounded-circle'} src={require('../images/user.png')} alt=""/>
                         </div>

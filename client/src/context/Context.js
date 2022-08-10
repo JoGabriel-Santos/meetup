@@ -1,6 +1,6 @@
-import React, { createContext, useEffect, useRef, useState } from 'react'
+import React, { createContext, useState, useRef, useEffect } from 'react'
 import { io } from 'socket.io-client'
-import Peer from 'peerjs'
+import Peer from 'simple-peer'
 
 const SocketContext = createContext()
 
@@ -9,8 +9,8 @@ const socket = io('http://localhost:5000')
 const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false)
     const [callEnded, setCallEnded] = useState(false)
-    const [call, setCall] = useState({})
     const [stream, setStream] = useState()
+    const [call, setCall] = useState({})
     const [user, setUser] = useState('')
     const [guest, setGuest] = useState('')
 
@@ -32,26 +32,6 @@ const ContextProvider = ({ children }) => {
         })
     }, [])
 
-    const callGuest = (id) => {
-        const peer = new Peer({ initiator: true, trickle: false, stream })
-
-        peer.on('signal', (data) => {
-            socket.emit('callGuest', { userToCall: id, signal: data, from: user, guest })
-        })
-
-        peer.on('stream', (currentStream) => {
-            guestVideo.current.srcObject = currentStream
-        })
-
-        socket.on('callAccepted', (signal) => {
-            setCallAccepted(true)
-
-            peer.signal(signal)
-        })
-
-        connectionRef.current = peer
-    }
-
     const answerCall = () => {
         setCallAccepted(true)
 
@@ -70,7 +50,27 @@ const ContextProvider = ({ children }) => {
         connectionRef.current = peer
     }
 
-    const disconnect = () => {
+    const callGuest = (id) => {
+        const peer = new Peer({ initiator: true, trickle: false, stream })
+
+        peer.on('signal', (data) => {
+            socket.emit('callGuest', { userToCall: id, signalData: data, from: user, guest })
+        })
+
+        peer.on('stream', (currentStream) => {
+            guestVideo.current.srcObject = currentStream
+        })
+
+        socket.on('callAccepted', (signal) => {
+            setCallAccepted(true)
+
+            peer.signal(signal)
+        })
+
+        connectionRef.current = peer
+    }
+
+    const leaveCall = () => {
         setCallEnded(true)
 
         connectionRef.current.destroy()
@@ -87,12 +87,11 @@ const ContextProvider = ({ children }) => {
             user,
             userVideo,
             guest,
-            setGuest,
             guestVideo,
-            connectionRef,
+            setGuest,
             callGuest,
+            leaveCall,
             answerCall,
-            disconnect,
         }}>
 
             {children}

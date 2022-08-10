@@ -31,13 +31,19 @@ function Sidebar ({ children }) {
                         />
 
                         {callAccepted && !callEnded ? (
-                            <button className={'m-0'} type={'button'} onClick={leaveCall}>
-                                Hang up
+                            <button className={'align-items-center border call-btn d-flex sidebar-items'}
+                                    onClick={leaveCall}
+                                    type={'button'}>
+
+                                <i className={'uil uil-phone-times fs-4 pr'}></i> Hang up
                             </button>
 
                         ) : (
-                            <button className={'align-items-center border call-btn d-flex sidebar-items'} type={'button'} onClick={() => callGuest(idToCall)}>
-                                <i className={'uil uil-outgoing-call fs-4 pr'}></i>Call
+                            <button className={'align-items-center border call-btn d-flex sidebar-items'}
+                                    onClick={() => callGuest(idToCall)}
+                                    type={'button'}>
+
+                                <i className={'uil uil-outgoing-call fs-4 pr'}></i> Call
                             </button>
                         )}
                     </div>

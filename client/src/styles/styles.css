@@ -50,9 +50,12 @@ button {
 }
 
 .call-btn {
-    padding: 0;
+    display: flex;
+    justify-content: center;
     margin-left: 20px;
+    padding: 0;
     transition: all 0.5s;
+    width: 180px;
 }
 
 .call-btn:hover {

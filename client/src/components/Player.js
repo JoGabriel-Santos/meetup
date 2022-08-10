@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { SocketContext } from '../context/Context'
 
 function Player () {
-    const { callAccepted, callEnded, call, stream, user, userVideo, guestVideo } = useContext(SocketContext)
+    const { callAccepted, callEnded, stream, userVideo, guestVideo } = useContext(SocketContext)
 
     return (
         <div className={'align-items-center d-flex card justify-content-around w-100'}>
@@ -18,7 +18,7 @@ function Player () {
                             <img className={'image-logo me-2 rounded-circle'} src={require('../images/user.png')} alt=""/>
                         </div>
 
-                        <h2 className={'fs-5 margin-0 text-muted'}>{user || 'User'}</h2>
+                        <h2 className={'fs-5 margin-0 text-muted'}>{'User'}</h2>
                     </div>
                 </div>
             )}
@@ -26,14 +26,14 @@ function Player () {
             {callAccepted && !callEnded && (
                 <div className={'bg-white border form rounded shadow'}>
 
-                    <video ref={guestVideo} autoPlay muted playsInline></video>
+                    <video className={'w-100'} ref={guestVideo} autoPlay muted playsInline></video>
 
-                    <div className={'align-items-center d-flex justify-content-start'}>
+                    <div className={'align-items-center d-flex info justify-content-start'}>
                         <div className={'user-image'}>
                             <img className={'image-logo me-2 rounded-circle'} src={require('../images/user.png')} alt=""/>
                         </div>
 
-                        <h2 className={'fs-5 margin-0 text-muted'}>{call.name || 'Guest'}</h2>
+                        <h2 className={'fs-5 margin-0 text-muted'}>{'Guest'}</h2>
                     </div>
                 </div>
             )}
